@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import SearchOverlay from './components/search-overlay'
 import logo from '../../assets/images/icon/logo.png'
 import { Outlet } from 'react-router-dom'
+import Footer from './Footer'
 
 export default function Layout() {
   const openSearch = () => {
@@ -64,6 +65,9 @@ export default function Layout() {
         <main>
           <Outlet/>
         </main>
+        <Footer 
+        newLatter={true}
+        />
         <SearchOverlay />
     </div>
   )

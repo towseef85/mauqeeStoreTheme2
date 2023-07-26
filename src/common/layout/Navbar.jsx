@@ -1,31 +1,31 @@
-import React,{useEffect,useState} from 'react'
-import { Link, useLocation } from 'react-router-dom';
-import { MENUITEMS } from '../utils/data';
-import { Container, Row } from 'reactstrap';
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { MENUITEMS } from "../utils/data";
+import { Container, Row } from "reactstrap";
 
 export default function Navbar() {
-    const [navClose, setNavClose] = useState({ right: "0px" });
-    const router = useLocation();
-    useEffect(() => {
-        if (window.innerWidth < 750) {
-          setNavClose({ right: "-410px" });
-        }
-        if (window.innerWidth < 1199) {
-          setNavClose({ right: "-300px" });
-        }
-      }, []);
-    const openNav = () => {
-        setNavClose({ right: "0px" });
-        if (router.pathname == "/layouts/Gym")
-          document.querySelector("#topHeader").classList.add("zindex-class");
-      };
-    
-      const closeNav = () => {
-        setNavClose({ right: "-410px" });
-        if (router.pathname == "/layouts/Gym")
-          document.querySelector("#topHeader").classList.remove("zindex-class");
-      };
-       const handleMegaSubmenu = (event) => {
+  const [navClose, setNavClose] = useState({ right: "0px" });
+  const router = useLocation();
+  useEffect(() => {
+    if (window.innerWidth < 750) {
+      setNavClose({ right: "-410px" });
+    }
+    if (window.innerWidth < 1199) {
+      setNavClose({ right: "-300px" });
+    }
+  }, []);
+  const openNav = () => {
+    setNavClose({ right: "0px" });
+    if (router.pathname == "/layouts/Gym")
+      document.querySelector("#topHeader").classList.add("zindex-class");
+  };
+
+  const closeNav = () => {
+    setNavClose({ right: "-410px" });
+    if (router.pathname == "/layouts/Gym")
+      document.querySelector("#topHeader").classList.remove("zindex-class");
+  };
+  const handleMegaSubmenu = (event) => {
     if (event.target.classList.contains("sub-arrow")) return;
 
     if (
@@ -119,9 +119,9 @@ export default function Navbar() {
   };
   return (
     <div>
-          <div className="main-navbar">
+      <div className="main-navbar">
         <div id="mainnav">
-        <div className="toggle-nav" onClick={openNav.bind(this)}>
+          <div className="toggle-nav" onClick={openNav.bind(this)}>
             <i className="fa fa-bars sidebar-bar"></i>
           </div>
           <ul className="nav-menu" style={navClose}>
@@ -137,27 +137,25 @@ export default function Navbar() {
                   key={i}
                   className={` ${menuItem.megaMenu ? "mega-menu" : ""}`}
                 >
-                  {
-                    menuItem.type == 'link' ?
-                      <Link href={menuItem.path}>
-                        <a className="nav-link">
-                          {menuItem.title}
-                        </a>
-                      </Link>
-                      :
-                      <a className="nav-link" onClick={(e) => openMblNav(e)}>
-                        {menuItem.title}
-                        <span className="sub-arrow"></span>
-                      </a>
-                  }
+                  {menuItem.type == "link" ? (
+                    <Link to={menuItem.path}>
+                      <a className="nav-link">{menuItem.title}</a>
+                    </Link>
+                  ) : (
+                    <a className="nav-link" onClick={(e) => openMblNav(e)}>
+                      {menuItem.title}
+                      <span className="sub-arrow"></span>
+                    </a>
+                  )}
                   {menuItem.children && !menuItem.megaMenu ? (
                     <ul className="nav-submenu">
                       {menuItem.children.map((childrenItem, index) => {
                         return (
                           <li
                             key={index}
-                            className={`${childrenItem.children ? "sub-menu " : ""
-                              }`}
+                            className={`${
+                              childrenItem.children ? "sub-menu " : ""
+                            }`}
                           >
                             {childrenItem.type === "sub" ? (
                               <a
@@ -191,8 +189,9 @@ export default function Navbar() {
                             )}
                             {childrenItem.children ? (
                               <ul
-                                className={`nav-sub-childmenu ${childrenItem.active ? "menu-open " : "active"
-                                  }`}
+                                className={`nav-sub-childmenu ${
+                                  childrenItem.active ? "menu-open " : "active"
+                                }`}
                               >
                                 {childrenItem.children.map(
                                   (childrenSubItem, key) => (
@@ -226,10 +225,11 @@ export default function Navbar() {
                     </ul>
                   ) : (
                     <>
-                      {menuItem.type !== 'link' &&
+                      {menuItem.type !== "link" && (
                         <div
-                          className={`mega-menu-container${menuItem.megaMenu ? "" : " opensubmenu"
-                            }`}
+                          className={`mega-menu-container${
+                            menuItem.megaMenu ? "" : " opensubmenu"
+                          }`}
                         >
                           {menuItem.megaMenu === true ? (
                             <Container>
@@ -237,19 +237,24 @@ export default function Navbar() {
                                 {menuItem.children.map((megaMenuItem, i) => {
                                   return (
                                     <div
-                                      className={`${menuItem.megaMenuType == "small"
-                                        ? "col mega-box"
-                                        : menuItem.megaMenuType == "medium"
+                                      className={`${
+                                        menuItem.megaMenuType == "small"
+                                          ? "col mega-box"
+                                          : menuItem.megaMenuType == "medium"
                                           ? "col-lg-3"
                                           : menuItem.megaMenuType == "large"
-                                            ? "col"
-                                            : ""
-                                        } `}
+                                          ? "col"
+                                          : ""
+                                      } `}
                                       key={i}
                                     >
                                       <div className="link-section">
                                         <div className="menu-title">
-                                          <h5 onClick={(e) => handleMegaSubmenu(e)}>
+                                          <h5
+                                            onClick={(e) =>
+                                              handleMegaSubmenu(e)
+                                            }
+                                          >
                                             {megaMenuItem.title}
                                           </h5>
                                         </div>
@@ -257,30 +262,44 @@ export default function Navbar() {
                                           <ul>
                                             {menuItem.title === "Elements"
                                               ? megaMenuItem.children.map(
-                                                (subMegaMenuItem, i) => {
-                                                  return (
-                                                    <li key={i}>
-                                                      <Link href={subMegaMenuItem.path}>
-                                                        <>
-                                                          <i className={`icon-${subMegaMenuItem.icon}`}></i>
-                                                          {subMegaMenuItem.title}
-                                                        </>
-                                                      </Link>
-                                                    </li>
-                                                  );
-                                                }
-                                              )
+                                                  (subMegaMenuItem, i) => {
+                                                    return (
+                                                      <li key={i}>
+                                                        <Link
+                                                          href={
+                                                            subMegaMenuItem.path
+                                                          }
+                                                        >
+                                                          <>
+                                                            <i
+                                                              className={`icon-${subMegaMenuItem.icon}`}
+                                                            ></i>
+                                                            {
+                                                              subMegaMenuItem.title
+                                                            }
+                                                          </>
+                                                        </Link>
+                                                      </li>
+                                                    );
+                                                  }
+                                                )
                                               : megaMenuItem.children.map(
-                                                (subMegaMenuItem, i) => {
-                                                  return (
-                                                    <li key={i}>
-                                                      <Link href={subMegaMenuItem.path}>
-                                                        {subMegaMenuItem.title}
-                                                      </Link>
-                                                    </li>
-                                                  );
-                                                }
-                                              )}
+                                                  (subMegaMenuItem, i) => {
+                                                    return (
+                                                      <li key={i}>
+                                                        <Link
+                                                          href={
+                                                            subMegaMenuItem.path
+                                                          }
+                                                        >
+                                                          {
+                                                            subMegaMenuItem.title
+                                                          }
+                                                        </Link>
+                                                      </li>
+                                                    );
+                                                  }
+                                                )}
                                           </ul>
                                         </div>
                                       </div>
@@ -293,7 +312,7 @@ export default function Navbar() {
                             ""
                           )}
                         </div>
-                      }
+                      )}
                     </>
                   )}
                 </li>
@@ -301,7 +320,7 @@ export default function Navbar() {
             })}
           </ul>
         </div>
-        </div>
+      </div>
     </div>
-  )
+  );
 }

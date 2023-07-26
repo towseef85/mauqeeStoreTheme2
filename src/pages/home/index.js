@@ -5,6 +5,8 @@ import AboutServices from './components/AboutServices'
 import PopularProducts from './components/PopularProducts'
 import { products } from '../../common/utils/data'
 import { Product4 } from '../../assets/scripts'
+import Brands from './components/Brands'
+import Parallax from './components/Parallax'
 
 export default function Home() {
   return (
@@ -13,6 +15,8 @@ export default function Home() {
     <Service/>
     <AboutServices/>
     <PopularProducts title="Popular Products" data={products} productSlider={Product4} spanClass={true}/>
+    <Parallax/>
+    <Brands/>
     </>
   )
 }

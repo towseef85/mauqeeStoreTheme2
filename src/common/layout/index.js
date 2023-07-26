@@ -4,7 +4,7 @@ import { Container, Row, Col, Media } from 'reactstrap'
 import search from '../../assets/images/icon/search.png'
 import Navbar from './Navbar'
 import SearchOverlay from './components/search-overlay'
-import logo from '../../assets/images/icon/logo.png'
+import logo from '../../assets/images/icon/logo/logo-new.png'
 import { Outlet } from 'react-router-dom'
 import Footer from './Footer'
 

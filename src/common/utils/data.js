@@ -20,16 +20,16 @@ export const MENUITEMS = [
       title:'Home', type:'link'
    },
    {
-      title:'Services', type:'link'
+      title:'Services', type:'link', path:'/services'
    },
    {
-      title:'Products', type:'link'
+      title:'Products', type:'link', path:'/products/category'
    },
    {
-      title:'AboutUs', type:'link'
+      title:'AboutUs', type:'link', path:'/aboutus'
    },
    {
-      title:'ContactUs', type:'link'
+      title:'ContactUs', type:'link', path:'/contactus'
    },
    //  {
    //     title: 'Home', type: 'sub', children: [
